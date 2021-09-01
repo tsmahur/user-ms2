@@ -4,10 +4,12 @@
 ##
 ### Dependency
     h2,jpa,web,lombok,eureka discover client, spring-cloud-starter-config
+	zipkin , sleuth
 
 ### application.yml
     port ,app name,eureka client(same in all MS)
     config:import: optional:configserver:http://localhost:8094
+	zipkin:base-url: http://localhost:9411/
 
 ### main application class
     @EnableEurekaClient @LoadBalanced(added over the RestTemplate Bean-> to http://ADDRESS-SERVICE/address/ instead of http://localhost:8091/address/)
