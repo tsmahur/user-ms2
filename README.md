@@ -8,7 +8,7 @@
     port ,app name,eureka client(same in all MS)
 
 ### main application class
-    @EnableEurekaClient
+    @EnableEurekaClient @LoadBalanced(added over the RestTemplate Bean-> to http://ADDRESS-SERVICE/address/ instead of http://localhost:8091/address/)
 
 ### EndPoints
     POST http://localhost:8090/users
