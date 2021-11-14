@@ -15,6 +15,8 @@
     @EnableEurekaClient @LoadBalanced(added over the RestTemplate Bean-> to http://ADDRESS-SERVICE/address/ instead of http://localhost:8091/address/)
 
 ### EndPoints
+    GATEWAY PORT : 8092
+
     POST http://localhost:8090/users
     {
         "firstName":"Ravi",
@@ -24,3 +26,18 @@
     }
 
     GET http://localhost:8090/users/1
+
+    POST http://localhost:8090/users/saveUserAndAddress
+    {
+    "user": {
+        "firstName": "Ravi",
+        "lastName": "Verma",
+        "email": "ac@abc.com"
+    },
+    "address": {
+        "city": "Noida2",
+        "state": "Up",
+        "pinCode": 1233456
+    }
+}
+}

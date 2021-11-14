@@ -1,6 +1,7 @@
 package com.tsm.user.controller;
 
 import com.tsm.user.entiry.User;
+import com.tsm.user.model.RequestModel;
 import com.tsm.user.model.ResponseModel;
 import com.tsm.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,11 @@ public class UserController {
     public User saveUser(@RequestBody User user) {
         log.info("Inside saveUser of UserController");
         return userService.saveUser(user);
+    }
+    @PostMapping("/saveUserAndAddress")
+    public ResponseModel saveUserAndAddress(@RequestBody RequestModel request) {
+        log.info("Inside saveUserAndAddress of UserController");
+        return userService.saveUserAndAddress(request);
     }
 
     @GetMapping("/{id}")

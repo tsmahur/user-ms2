@@ -1,3 +1,4 @@
+# un-comment these if want to load the properties form  github using cloud-config-server ms
 #spring:
 #  cloud:
 #    config:

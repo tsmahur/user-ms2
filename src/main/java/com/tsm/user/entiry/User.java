@@ -1,7 +1,6 @@
 package com.tsm.user.entiry;
 
 
-import com.tsm.user.model.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

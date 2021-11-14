@@ -2,14 +2,13 @@ package com.tsm.user.service;
 
 import com.tsm.user.entiry.User;
 import com.tsm.user.model.Address;
+import com.tsm.user.model.RequestModel;
 import com.tsm.user.model.ResponseModel;
 import com.tsm.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -24,6 +23,20 @@ public class UserService {
     public User saveUser(User user) {
         log.info("Inside saveUser of UserService");
         return userRepository.save(user);
+    }
+    public ResponseModel saveUserAndAddress(RequestModel request) {
+        log.info("Inside saveUser of UserService");
+        Address  savedAddress= restTemplate.postForObject("http://ADDRESS-SERVICE/address/"  //load balancer also need along with eureka put @LoadBalanced annotation on restTemplate Bean
+                , request.getAddress(),Address.class);
+
+        User userToSave=request.getUser();
+        userToSave.setAddressId(savedAddress.getId());
+        User savedUser=userRepository.save(userToSave);
+
+        ResponseModel responseModel = new ResponseModel();
+        responseModel.setUser(savedUser);
+        responseModel.setAdress(savedAddress);
+        return  responseModel;
     }
 
     public ResponseModel getUserById(Integer id) {
